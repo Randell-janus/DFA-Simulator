@@ -8,14 +8,12 @@ import {
   Box,
   Divider,
   Tag,
-  Tooltip,
   Code,
 } from "@chakra-ui/react";
 
 import { CgChevronRight } from "react-icons/cg";
 import { FaCheck } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-import { IoMdHelpCircle } from "react-icons/io";
 import { useState } from "react";
 
 import FirstDFA from "./DFA/FirstDFA";
@@ -363,7 +361,6 @@ const Main = () => {
               fontSize={["0.7em", "0.7em", "0.9em"]}
               my={3}
               placeholder={!prob2 ? "e.g. babbabab" : "e.g. 0110101"}
-              // required
               value={string}
               onChange={handleTextChange}
             />
@@ -424,7 +421,6 @@ const Main = () => {
 
       <Flex
         direction="column"
-        // bg="red"
         mb={[14, 14, 16, 16, 16, 0]}
         w={["20em", null, "40em", null, null, "60em"]}
       >
@@ -438,7 +434,7 @@ const Main = () => {
           {!prob2 ? (
             <FirstDFA currentNode={currentNode} simulating={simulating} />
           ) : (
-            <SecondDFA currentNode={currentNode} simulating={simulating} />
+            <SecondDFA currentNodeVal={currentNode} simulatingStatus={simulating} />
           )}
         </Flex>
         <Flex

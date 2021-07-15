@@ -16,7 +16,7 @@ const variants = {
   scale: { scale: 1.5 },
 };
 
-const SecondDFA = ({ currentNode, simulating }) => {
+const SecondDFA = ({ currentNodeVal, simulatingStatus }) => {
   return (
     <>
       {/* q3 q5 */}
@@ -211,8 +211,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="1"
         variants={variants}
         initial="initial"
-        animate={currentNode == 5 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 5 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q5
       </Atom>
@@ -220,8 +220,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="2"
         variants={variants}
         initial="initial"
-        animate={currentNode == 7 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 7 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q7
       </Atom>
@@ -229,8 +229,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="3"
         variants={variants}
         initial="initial"
-        animate={currentNode == 6 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 6 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q6
       </Atom>
@@ -238,8 +238,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="4"
         variants={variants}
         initial="initial"
-        animate={currentNode == 3 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 3 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q3
       </Atom>
@@ -247,8 +247,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="5"
         variants={variants}
         initial="initial"
-        animate={currentNode == 8 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 8 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q8
       </Atom>
@@ -256,8 +256,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="6"
         variants={variants}
         initial="initial"
-        animate={currentNode == 4 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 4 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q4
       </Atom>
@@ -265,8 +265,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="7"
         variants={variants}
         initial="initial"
-        animate={currentNode == 2 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 2 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q2
       </Atom>
@@ -274,8 +274,8 @@ const SecondDFA = ({ currentNode, simulating }) => {
         variant="8"
         variants={variants}
         initial="initial"
-        animate={currentNode == 1 ? "pulse" : ""}
-        whileHover={!simulating && "scale"}
+        animate={currentNodeVal == 1 ? "pulse" : ""}
+        whileHover={!simulatingStatus && "scale"}
       >
         q1
       </Atom>
