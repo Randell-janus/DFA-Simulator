@@ -440,7 +440,6 @@ const Main = () => {
         <Flex
           align="center"
           my="3"
-          justify=""
           direction="row"
           justify={["flex-end", null, "flex-end", null, null, "space-between"]}
         >
