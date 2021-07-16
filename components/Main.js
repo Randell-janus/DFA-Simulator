@@ -139,7 +139,7 @@ const Main = () => {
   const notInLanguageString = useToast();
   const closeToasts = useToast();
 
-  const input = string;
+  let input = string;
   let results = "";
 
   const handleTextChange = (e) => {
@@ -212,8 +212,13 @@ const Main = () => {
     setData(results);
   };
 
+  const handleInputString = () => {
+    input = input.replace(/\s+/g, "").toLowerCase();
+  };
+
   const handleTest = (e) => {
     e.preventDefault();
+    handleInputString();
 
     if (!prob2) {
       if (input == "") {
@@ -247,6 +252,7 @@ const Main = () => {
 
   const handleSimulation = (e) => {
     e.preventDefault();
+    handleInputString();
 
     if (!prob2) {
       if (input == "") {
@@ -434,7 +440,10 @@ const Main = () => {
           {!prob2 ? (
             <FirstDFA currentNode={currentNode} simulating={simulating} />
           ) : (
-            <SecondDFA currentNodeVal={currentNode} simulatingStatus={simulating} />
+            <SecondDFA
+              currentNodeVal={currentNode}
+              simulatingStatus={simulating}
+            />
           )}
         </Flex>
         <Flex
