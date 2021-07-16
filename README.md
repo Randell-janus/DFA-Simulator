@@ -9,6 +9,7 @@ A DFA is a state machine made up of states and transitions that can accept or re
 ## Framework/Libraries
 - Next.js
 - Chakra UI
+- Framer Motion
 
 ## Views
 - Main page
