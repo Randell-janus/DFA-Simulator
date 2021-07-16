@@ -1,3 +1,14 @@
+import { CgChevronRight } from "react-icons/cg";
+import { FaCheck } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
+import { useState } from "react";
+
+import FirstDFA from "./DFA/FirstDFA";
+import SecondDFA from "./DFA/SecondDFA";
+import CFG from "./components/CFG";
+
+import { DFA, problem1, problem2, language1, language2 } from "./Logic";
+
 import {
   Flex,
   Input,
@@ -11,120 +22,9 @@ import {
   Code,
 } from "@chakra-ui/react";
 
-import { CgChevronRight } from "react-icons/cg";
-import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
-import { useState } from "react";
-
-import FirstDFA from "./DFA/FirstDFA";
-import SecondDFA from "./DFA/SecondDFA";
-import CFG from "./components/CFG";
-
 const Main = () => {
-  class Node {
-    constructor(nodeNumber, direction1, direction2) {
-      this.nodeNumber = nodeNumber;
-      this.direction = [direction1, direction2];
-    }
-  }
-
-  class DFA {
-    constructor(input, problem, language) {
-      this.input = input;
-      this.problem = problem;
-      this.language = language;
-
-      this.currentNode = 1;
-      this.currentInputPos = -1;
-      this.path = [1];
-
-      this.node();
-    }
-    node() {
-      this.currentInputPos += 1;
-      if (this.currentInputPos == "T") {
-        this.result = "Invalid";
-        // console.log("Invalid String TRAP");
-        // console.log("Path Taken:", this.path);
-      } else {
-        if (
-          this.currentNode < this.problem.length &&
-          this.input[this.currentInputPos] != undefined
-        ) {
-          let node = this.problem[this.currentNode - 1];
-          // console.log(this.path, this.input[this.currentInputPos]);
-
-          if (
-            this.input[this.currentInputPos] == "a" ||
-            this.input[this.currentInputPos] == "b" ||
-            this.input[this.currentInputPos] == "0" ||
-            this.input[this.currentInputPos] == "1"
-          ) {
-            this.currentNode =
-              node.direction[
-                this.language.indexOf(this.input[this.currentInputPos])
-              ];
-
-            // console.log(`currentNode: ${this.currentNode}`);
-            // console.log(
-            //   `node.direction[]: ${this.language.indexOf(
-            //     this.input[this.currentInputPos]
-            //   )}`
-            // );
-            this.currentNode != undefined && this.path.push(this.currentNode);
-          } else {
-            this.currentNode = "T";
-            // console.log(
-            //   "String contains a letter not in the language - ",
-            //   this.language
-            // );
-          }
-          this.node();
-        } else {
-          if (this.currentNode == this.problem.length) {
-            this.result = "Valid";
-            // console.log("Valid String");
-            // console.log("Path Taken", this.path);
-          } else {
-            this.result = "Invalid";
-            // console.log("Invalid String SHORT");
-            this.path.push("eos");
-            // console.log("Path Taken", this.path);
-          }
-        }
-      }
-    }
-  }
-  // (aba+bab)(a+b)*(bab)(a+b)*(a+b+ab+ba)(a+b)*
-  const problem1 = [
-    new Node(1, 2, 4),
-    new Node(2, "T", 3),
-    new Node(3, 6, "T"),
-    new Node(4, 5, "T"),
-    new Node(5, "T", 6),
-    new Node(6, 6, 7),
-    new Node(7, 8, 7),
-    new Node(8, 6, 9),
-    new Node(9, 10, 10),
-    new Node(10, 10, 10),
-  ];
-  // ((101+111+101)+(1+0+11))(1+0+01)*(111+000+101)(1+0)*
-  const problem2 = [
-    new Node(1, 2, 2),
-    new Node(2, 4, 3),
-    new Node(3, 7, 5),
-    new Node(4, 6, 3),
-    new Node(5, 7, 8),
-    new Node(6, 8, 3),
-    new Node(7, 6, 8),
-    new Node(8, 8, 8),
-  ];
-
   const regex1 = "(aba+bab) (a+b)* (bab) (a+b)* (a+b+ab+ba) (a+b)*";
   const regex2 = "((101+111+101)+(1+0+11)) (1+0+01)* (111+000+101) (1+0)*";
-
-  const language1 = ["a", "b"];
-  const language2 = ["0", "1"];
 
   const [string, setString] = useState("");
   const [data, setData] = useState("");
@@ -146,7 +46,6 @@ const Main = () => {
   const handleTextChange = (e) => {
     const stringValue = e.target.value;
     setString(stringValue);
-
     const countValue = e.target.value.length;
     setCount(countValue);
   };
@@ -162,9 +61,9 @@ const Main = () => {
     closeAll();
   };
 
-  function closeAll() {
+  const closeAll = () => {
     closeToasts.closeAll();
-  }
+  };
   const validToast = () => {
     validString({
       title: "Valid String!",
@@ -227,7 +126,6 @@ const Main = () => {
         // console.log("No valid configuration for input string/empty");
       } else if (input.includes("a") || input.includes("b")) {
         // console.log("PROB1");
-
         results = new DFA(input, problem1, language1);
         // console.log(results);
         setData(results);
@@ -262,13 +160,10 @@ const Main = () => {
       } else if (input.includes("a") || input.includes("b")) {
         setSimulating(true);
         // console.log("PROB1");
-
         results = new DFA(input, problem1, language1);
         // console.log(results);
-
         const pathWithZeroes = [0].concat(...results.path.map((e) => [e, 0]));
         // console.log(pathWithZeroes);
-
         pathWithZeroes.some((node, i) => {
           setTimeout(() => {
             setCurrentNode(node);
@@ -294,13 +189,10 @@ const Main = () => {
       } else if (input.includes("0") || input.includes("1")) {
         setSimulating(true);
         // console.log("PROB2");
-
         results = new DFA(input, problem2, language2);
         // console.log(results);
-
         const pathWithZeroes = [0].concat(...results.path.map((e) => [e, 0]));
         // console.log(pathWithZeroes);
-
         pathWithZeroes.some((node, i) => {
           setTimeout(() => {
             setCurrentNode(node);
