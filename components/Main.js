@@ -18,6 +18,7 @@ import { useState } from "react";
 
 import FirstDFA from "./DFA/FirstDFA";
 import SecondDFA from "./DFA/SecondDFA";
+import CFG from "./components/CFG";
 
 const Main = () => {
   class Node {
@@ -456,7 +457,7 @@ const Main = () => {
             Regular Expression: <Tag as="span">{!prob2 ? regex1 : regex2}</Tag>
           </Heading>
           <Flex>
-            <Button mx="2">Show CFL</Button>
+            <CFG prob2={prob2} />
             <Button
               disabled={simulating}
               onClick={handleSwitch}

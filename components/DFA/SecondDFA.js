@@ -1,6 +1,6 @@
 import { Badge, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { ArrowHead, ArrowLoop, ArrowBody } from "./Arrows";
+import { ArrowHead, ArrowLoop, ArrowBody } from "../components/Arrows";
 
 const Atom = motion(Badge);
 

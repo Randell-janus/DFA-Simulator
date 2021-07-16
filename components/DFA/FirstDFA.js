@@ -1,6 +1,6 @@
-import { Badge, Box, Text, chakra } from "@chakra-ui/react";
+import { Badge, Text, chakra } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { ArrowHead, ArrowLoop, ArrowBody } from "./Arrows";
+import { ArrowHead, ArrowLoop, ArrowBody } from "../components/Arrows";
 import Arrow from "@elsdoerfer/react-arrow";
 
 const RArrow = chakra(Arrow);
