@@ -1,26 +1,9 @@
-import { CgChevronRight } from "react-icons/cg";
-import { FaCheck } from "react-icons/fa";
-import { ImCross } from "react-icons/im";
+import { Flex, useToast, Divider } from "@chakra-ui/react";
 import { useState } from "react";
 
-import FirstDFA from "./DFA/FirstDFA";
-import SecondDFA from "./DFA/SecondDFA";
-import CFG from "./components/CFG";
-
-import { DFA, problem1, problem2, language1, language2 } from "./Logic";
-
-import {
-  Flex,
-  Input,
-  Button,
-  Text,
-  useToast,
-  Heading,
-  Box,
-  Divider,
-  Tag,
-  Code,
-} from "@chakra-ui/react";
+import { DFA, problem1, problem2, language1, language2 } from "./DFA/Logic";
+import LeftBox from "./components/LeftBox";
+import RightBox from "./components/RightBox";
 
 const Main = () => {
   const regex1 = "(aba+bab) (a+b)* (bab) (a+b)* (a+b+ab+ba) (a+b)*";
@@ -214,152 +197,32 @@ const Main = () => {
       direction={["column", "column", "column", "column", "column", "row"]}
       align="center"
     >
-      <Box
-        w={["20em", "20em", "40em", "40em", "40em", "30em"]}
-        mr={[0, 0, 0, 0, 0, 24]}
-        mt={[14, 14, 16, 16, 16, 0]}
-      >
-        <Flex align="flex-end" justify="space-between">
-          <Heading variant="title">DFA Simulator</Heading>
-          <Code fontSize={["0.5em", null, "0.6em", null, null, "0.6em"]}>
-            BETA
-          </Code>
-        </Flex>
-
-        <Divider mb="6" />
-
-        <Box>
-          <form onSubmit={handleTest}>
-            <Flex align="center">
-              <Heading>Input String:</Heading>
-              <Flex align="center">
-                {data && (
-                  <Button
-                    variant="data"
-                    rightIcon={
-                      data.result == "Valid" ? (
-                        <Box color="teal.300">
-                          <FaCheck />
-                        </Box>
-                      ) : (
-                        data.result == "Invalid" && (
-                          <Box color="pink.300">
-                            <ImCross />
-                          </Box>
-                        )
-                      )
-                    }
-                  >
-                    {data.result}
-                  </Button>
-                )}
-              </Flex>
-            </Flex>
-            <Input
-              maxLength="500"
-              fontSize={["0.7em", "0.7em", "0.9em"]}
-              my={3}
-              placeholder={!prob2 ? "e.g. babbabab" : "e.g. 0110101"}
-              value={string}
-              onChange={handleTextChange}
-            />
-            <Flex justify="space-between" align="center">
-              <Flex>
-                <Button type="submit" disabled={simulating}>
-                  Test
-                </Button>
-                <Button onClick={handleSimulation} ml={2} disabled={simulating}>
-                  Simulate
-                </Button>
-                <Button
-                  variant="clear"
-                  onClick={handleReset}
-                  disabled={simulating}
-                >
-                  Clear
-                </Button>
-              </Flex>
-              <Text
-                fontWeight="semibold"
-                fontSize={["0.7em", "0.7em", "0.9em"]}
-              >
-                Limit: {count}/500
-              </Text>
-            </Flex>
-            <Divider my="6" />
-            <Flex
-              align="center"
-              direction={["column", "column", "row", "row", "row", "none"]}
-              display={["flex", "flex", "flex", "flex", "flex", "none"]}
-              // justify="space-between"
-            >
-              <Heading>Regular Expression:</Heading>
-              <Tag my={1} fontSize={["0.7em", "0.7em", "0.9em"]}>
-                {!prob2 ? regex1 : regex2}
-              </Tag>
-            </Flex>
-            <Flex
-              my={2}
-              direction={["column", "column", "row", "row", "row", "none"]}
-              display={["flex", "flex", "flex", "flex", "flex", "none"]}
-              align="center"
-            >
-              <Heading>Language Accepted:</Heading>
-              <Tag my={1} fontSize={["0.7em", "0.7em", "0.9em"]}>
-                {!prob2 ? "[a, b]" : "[0, 1]"}
-              </Tag>
-            </Flex>
-            <Divider
-              display={["block", null, "block", null, null, "none"]}
-              mt="6"
-              mb="2"
-            />
-          </form>
-        </Box>
-      </Box>
-
-      <Flex
-        direction="column"
-        mb={[14, 14, 16, 16, 16, 0]}
-        w={["20em", null, "40em", null, null, "60em"]}
-      >
-        <Flex
-          h={["12em", null, "18em", null, null, "18em"]}
-          pos="relative"
-          // border="solid"
-          borderBottom="solid 1px"
-          borderColor="gray.200"
-        >
-          {!prob2 ? (
-            <FirstDFA currentNode={currentNode} simulating={simulating} />
-          ) : (
-            <SecondDFA
-              currentNodeVal={currentNode}
-              simulatingStatus={simulating}
-            />
-          )}
-        </Flex>
-        <Flex
-          align="center"
-          my="3"
-          direction="row"
-          justify={["flex-end", null, "flex-end", null, null, "space-between"]}
-        >
-          <Heading display={["none", null, "none", null, null, "flex"]}>
-            Regular Expression: <Tag as="span">{!prob2 ? regex1 : regex2}</Tag>
-          </Heading>
-          <Flex>
-            <CFG prob2={prob2} />
-            <Button
-              disabled={simulating}
-              onClick={handleSwitch}
-              rightIcon={<CgChevronRight />}
-            >
-              Switch RegEx
-            </Button>
-          </Flex>
-        </Flex>
-      </Flex>
+      <LeftBox
+        handleTest={handleTest}
+        data={data}
+        prob2={prob2}
+        string={string}
+        handleTextChange={handleTextChange}
+        simulating={simulating}
+        handleSimulation={handleSimulation}
+        handleReset={handleReset}
+        count={count}
+        regex1={regex1}
+        regex2={regex2}
+      />
+      <Divider
+        display={["block", null, "block", null, null, "none"]}
+        mt="6"
+        mb="2"
+      />
+      <RightBox
+        prob2={prob2}
+        simulating={simulating}
+        regex1={regex1}
+        regex2={regex2}
+        currentNode={currentNode}
+        handleSwitch={handleSwitch}
+      />
     </Flex>
   );
 };
