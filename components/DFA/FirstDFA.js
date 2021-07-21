@@ -1,9 +1,12 @@
-import { Badge, Text, chakra } from "@chakra-ui/react";
+import { Badge, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
-import { ArrowHead, ArrowLoop, ArrowBody } from "../components/Arrows";
-import Arrow from "@elsdoerfer/react-arrow";
+import {
+  ArrowHead,
+  ArrowLoopSm,
+  ArrowLoopLg,
+  ArrowBody,
+} from "../components/Arrows";
 
-const RArrow = chakra(Arrow);
 const Atom = motion(Badge);
 
 const variants = {
@@ -77,7 +80,7 @@ const FirstDFA = ({ currentNode, simulating }) => {
       {/* q6 q6 */}
       <Text
         top={["45%", "45%", "50%", "50%", "50%", "50%"]}
-        left={["40%", "40%", "42%", null, null, "44%"]}
+        left={["40%", "40%", "42%", null, null, "43%"]}
         size="label"
       >
         a
@@ -89,7 +92,7 @@ const FirstDFA = ({ currentNode, simulating }) => {
       {/* q7 q7 */}
       <Text
         top="19.5%"
-        left={["71%", "71%", "68%", null, null, "66%"]}
+        left={["71%", "71%", "68%", null, null, "67%"]}
         size="label"
       >
         b
@@ -181,16 +184,26 @@ const FirstDFA = ({ currentNode, simulating }) => {
 
       {/* ARROWS */}
       {/* q6 q6 */}
-      <ArrowLoop
+      <ArrowLoopSm
         top={["50%", "50%", "50%", null, null, "50%"]}
         left={["42.5%", "42.5%", "44.4%", null, null, "46%"]}
         rotate="360"
       />
+      <ArrowLoopLg
+        top={["50%", "50%", "50%", null, null, "51%"]}
+        left={["42.5%", "42.5%", "44.4%", null, null, "45.7%"]}
+        rotate="20"
+      />
       {/* q7 q7 */}
-      <ArrowLoop
+      <ArrowLoopSm
         top={["20%", "20%", "20%", null, null, "20%"]}
         left={["67.3%", "67.3%", "65.6%", null, null, "64%"]}
         rotate="180"
+      />
+      <ArrowLoopLg
+        top={["20%", "20%", "20%", null, null, "18.5%"]}
+        left={["67.3%", "67.3%", "65.6%", null, null, "64.3%"]}
+        rotate="200"
       />
       {/* q2 q3 */}
       <ArrowHead

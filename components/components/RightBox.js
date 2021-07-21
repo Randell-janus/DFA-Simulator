@@ -24,7 +24,6 @@ const RightBox = ({
         <Flex
           h={["12em", null, "18em", null, null, "18em"]}
           pos="relative"
-          // border="solid"
           borderBottom="solid 1px"
           borderColor="gray.200"
         >
